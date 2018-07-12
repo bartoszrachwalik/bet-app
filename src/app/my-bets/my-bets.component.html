@@ -1,3 +1,6 @@
-<p>
-  my-bets works!
-</p>
+<div class="card">
+  <app-bet class="list-group list-group-flush"
+           *ngFor="let currentBet of bets"
+           [bet]="currentBet"></app-bet>
+  <button class="btn btn-primary" (click)="onUpdate()">Update bets</button>
+</div>
