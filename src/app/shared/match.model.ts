@@ -1,17 +1,17 @@
 export class MatchModel {
-  matchID: number;
+  Id: number;
   homeTeam: string;
   awayTeam: string;
   homeScore: number;
   awayScore: number;
-  date: Date;
+  matchDate: Date;
 
-  constructor(matchId: number, homeTeam: string, awayTeam: string, homeScore: number, awayScore: number, date: Date) {
-    this.matchID = matchId;
+  constructor(Id: number, homeTeam: string, awayTeam: string, homeScore: number, awayScore: number, matchDate: Date) {
+    this.Id = Id;
     this.homeTeam = homeTeam;
     this.awayTeam = awayTeam;
     this.homeScore = homeScore;
     this.awayScore = awayScore;
-    this.date = date;
+    this.matchDate = matchDate;
   }
 }

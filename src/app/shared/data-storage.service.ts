@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import {BetModel} from '../my-bets/bet/bet.model';
+import {BetModel} from '../my-bets/bet.model';
 import {MatchModel} from './match.model';
 
 @Injectable()
 export class DataStorageService {
-  bet: BetModel;
 
   constructor(private http: HttpClient) {
   }
