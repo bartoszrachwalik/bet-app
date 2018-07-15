@@ -1,6 +1,60 @@
 <div class="card">
-  <app-bet class="list-group list-group-flush"
-           *ngFor="let currentBet of bets"
-           [bet]="currentBet"></app-bet>
-  <button class="btn btn-primary" (click)="onUpdate()">Update bets</button>
+  <div class="card-body">
+    <div class="card-title">Here you can submit your bets.</div>
+    <div class="card-text">
+      <button type="submit"
+              class="btn btn-warning btn-sm"
+              (click)="onUpdateBets()"
+              [disabled]="!betForm.valid">Update bets
+      </button>
+      <div class="row">
+        <div class="col-4">
+          <form *ngIf="betForm!=undefined" [formGroup]="betForm">
+            <div formArrayName="bets">
+              <div class="form-row mt-1" *ngFor="let bet of getBetForms().controls; let i=index" [formGroupName]="i">
+                <div class="col">
+                  <input type="number"
+                         class="form-control form-control-sm"
+                         id="homeScore"
+                         formControlName="homeScore">
+                </div>
+                <div class="col">
+                  <input type="number"
+                         class="form-control form-control-sm"
+                         id="awayScore"
+                         formControlName="awayScore">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col">
+          <div *ngFor="let match of matches">
+            <div class="row mt-1">
+              <input type="text"
+                     readonly
+                     class="form-control-sm form-control-plaintext col-3"
+                     value="{{match.homeTeam}}">
+              <input type="text"
+                     readonly
+                     class="form-control-sm form-control-plaintext col-1"
+                     value="{{match.homeScore}}">
+              <input type="text"
+                     readonly
+                     class="form-control-sm form-control-plaintext col-1"
+                     value="{{match.awayScore}}">
+              <input type="text"
+                     readonly
+                     class="form-control-sm form-control-plaintext col-3"
+                     value="{{match.awayTeam}}">
+              <input type="text"
+                     readonly
+                     class="form-control-sm form-control-plaintext col-4"
+                     value="{{match.matchDate | date:'short'}}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

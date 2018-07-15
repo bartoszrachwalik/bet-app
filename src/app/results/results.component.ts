@@ -10,74 +10,80 @@ import {MatchModel} from '../shared/match.model';
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent implements OnInit {
-  resultForm: FormGroup;
-  results: MatchModel[];
+  matchForm: FormGroup;
+  matches: MatchModel[];
 
   constructor(private dataStorageService: DataStorageService) {
   }
 
-  getResultForms() {
-    return <FormArray>this.resultForm.get('results');
+  getMatchForms() {
+    return <FormArray>this.matchForm.get('matches');
   }
 
   ngOnInit() {
-    this.resultForm = new FormGroup({
-      results: new FormArray([], [Validators.required])
+    this.matchForm = new FormGroup({
+      matches: new FormArray([], [Validators.required])
     });
 
-    this.dataStorageService.getResults().subscribe(
+    this.dataStorageService.getMatches().subscribe(
       (results: MatchModel[]) => {
-        this.results = results;
-        for (const result of this.results) {
-          this.getResultForms().push(new FormGroup(
-            {
-              matchID: new FormControl(result.matchID, [Validators.required]),
-              homeTeam: new FormControl(result.homeTeam, [Validators.required]),
-              awayTeam: new FormControl(result.awayTeam, [Validators.required]),
-              homeScore: new FormControl(result.homeScore, [Validators.required]),
-              awayScore: new FormControl(result.awayScore, [Validators.required]),
-              date: new FormControl(result.date, [Validators.required]),
-            }
-          ));
+        if (results != null) {
+          this.matches = results;
+          for (const match of this.matches) {
+            this.getMatchForms().push(
+              new FormGroup(
+                {
+                  Id: new FormControl(match.Id, [Validators.required]),
+                  homeTeam: new FormControl(match.homeTeam, [Validators.required]),
+                  awayTeam: new FormControl(match.awayTeam, [Validators.required]),
+                  homeScore: new FormControl(match.homeScore, [Validators.min(0)]),
+                  awayScore: new FormControl(match.awayScore, [Validators.min(0)]),
+                  matchDate: new FormControl(match.matchDate, [Validators.required]),
+                }
+              ));
+          }
         }
       },
-      () => console.log('Wrong')
+      () => console.log('Could not get matches from database!')
     );
   }
 
   onAddMatch() {
     const matchForm = new FormGroup({
-      matchID: new FormControl(null, [Validators.required]),
+      Id: new FormControl(null),
       homeTeam: new FormControl(null, [Validators.required]),
       awayTeam: new FormControl(null, [Validators.required]),
-      homeScore: new FormControl(null, [Validators.required]),
-      awayScore: new FormControl(null, [Validators.required]),
-      date: new FormControl(null, [Validators.required]),
+      homeScore: new FormControl(null, [Validators.min(0)]),
+      awayScore: new FormControl(null, [Validators.min(0)]),
+      matchDate: new FormControl(null),
     });
-    this.getResultForms().push(matchForm);
+    this.getMatchForms().push(matchForm);
   }
 
   onDeleteMatch(i: number) {
-    this.getResultForms().removeAt(i);
+    this.getMatchForms().removeAt(i);
   }
 
-  onUpdateMatch() {
-    const results = [];
+  onUpdateMatches() {
+    const matches = [];
     let i = 0;
-    for (const result of this.getResultForms().controls) {
-      results.push(new MatchModel(
-        i,
-        result.get('homeTeam').value,
-        result.get('awayTeam').value,
-        result.get('homeScore').value,
-        result.get('awayScore').value,
-        new Date));
+    for (const match of this.getMatchForms().controls) {
+      matches.push(
+        new MatchModel(
+          i,
+          match.get('homeTeam').value,
+          match.get('awayTeam').value,
+          match.get('homeScore').value,
+          match.get('awayScore').value,
+          new Date
+        )
+      );
       i++;
     }
 
-    this.dataStorageService.updateResults(results).subscribe(
-      () => console.log('OK'),
-      () => console.log('Wrong'),
+    this.dataStorageService.updateMatches(matches).subscribe(
+      () => console.log('Matches updated successfully in database!'),
+      () => console.log('Could not update matches in database!'),
     );
   }
 }

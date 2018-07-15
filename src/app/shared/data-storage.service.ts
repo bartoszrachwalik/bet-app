@@ -18,11 +18,11 @@ export class DataStorageService {
     return this.http.get('https://bet-app-604c7.firebaseio.com/my-bets.json');
   }
 
-  updateResults(results: MatchModel[]) {
-    return this.http.put('https://bet-app-604c7.firebaseio.com/results.json', results);
+  updateMatches(matches: MatchModel[]) {
+    return this.http.put('https://bet-app-604c7.firebaseio.com/results.json', matches);
   }
 
-  getResults() {
+  getMatches() {
     return this.http.get('https://bet-app-604c7.firebaseio.com/results.json');
   }
 
