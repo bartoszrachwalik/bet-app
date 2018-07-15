@@ -14,8 +14,8 @@ import {AppRoutingModule} from './ranking/app-routing.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {SigninComponent} from './auth/signin/signin.component';
 import {SignupComponent} from './auth/signup/signup.component';
-import {BetComponent} from './my-bets/bet/bet.component';
 import {ResultsComponent} from './results/results.component';
+import { MatchesListComponent } from './matches-list/matches-list.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +27,8 @@ import {ResultsComponent} from './results/results.component';
     PageNotFoundComponent,
     SigninComponent,
     SignupComponent,
-    BetComponent,
-    ResultsComponent
+    ResultsComponent,
+    MatchesListComponent
   ],
   imports: [
     BrowserModule,
