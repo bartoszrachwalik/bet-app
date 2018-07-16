@@ -4,6 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 
 import {DataStorageService} from './shared/data-storage.service';
+import {AuthService} from './auth/auth.service';
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
@@ -15,7 +16,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {SigninComponent} from './auth/signin/signin.component';
 import {SignupComponent} from './auth/signup/signup.component';
 import {ResultsComponent} from './results/results.component';
-import { MatchesListComponent } from './matches-list/matches-list.component';
+import {MatchesListComponent} from './matches-list/matches-list.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { MatchesListComponent } from './matches-list/matches-list.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [DataStorageService],
+  providers: [DataStorageService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

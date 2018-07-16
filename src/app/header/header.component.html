@@ -13,11 +13,16 @@
     <li class="nav-item" routerLinkActive="active">
       <a class="nav-link" routerLink="/matches-list">Matches List</a>
     </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" routerLink="/signin">Sign In</a>
+    <li *ngIf="isAuthenticated(); else notLogged" class="nav-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/" (click)="onLogout()">Log out</a>
     </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" routerLink="/signup">Sign Up</a>
-    </li>
+    <ng-template #notLogged>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/signin">Sign In</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/signup">Sign Up</a>
+      </li>
+    </ng-template>
   </ul>
 </nav>
