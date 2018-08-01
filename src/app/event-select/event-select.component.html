@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-body">
+    <div class="card-title">Choose event you want to bet for.</div>
+    <div class="card-text">
+      <div *ngIf="eventNames!=undefined">
+        <div class="row">
+          <div *ngFor="let event of eventNames; let i = index">
+            <button type="button" class="btn btn-primary ml-1" (click)="onEventSelect(i)">{{event}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

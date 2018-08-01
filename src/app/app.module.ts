@@ -17,6 +17,10 @@ import {SigninComponent} from './auth/signin/signin.component';
 import {SignupComponent} from './auth/signup/signup.component';
 import {ResultsComponent} from './results/results.component';
 import {MatchesListComponent} from './matches-list/matches-list.component';
+import {EventSelectComponent} from './event-select/event-select.component';
+import {EventsComponent} from './events/events.component';
+import { MyBetsStartComponent } from './my-bets-start/my-bets-start.component';
+import { MatchesListStartComponent } from './matches-list-start/matches-list-start.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import {MatchesListComponent} from './matches-list/matches-list.component';
     SigninComponent,
     SignupComponent,
     ResultsComponent,
-    MatchesListComponent
+    MatchesListComponent,
+    EventSelectComponent,
+    EventsComponent,
+    MyBetsStartComponent,
+    MatchesListStartComponent
   ],
   imports: [
     BrowserModule,

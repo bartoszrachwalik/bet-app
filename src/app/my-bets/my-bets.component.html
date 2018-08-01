@@ -11,7 +11,9 @@
         <div class="col-4">
           <form *ngIf="betForm!=undefined" [formGroup]="betForm">
             <div formArrayName="bets">
-              <div class="form-row mt-1" *ngFor="let bet of getBetForms().controls; let i=index" [formGroupName]="i">
+              <div class="form-row mt-1"
+                   *ngFor="let bet of getBetForms().controls; let i=index"
+                   [formGroupName]="i">
                 <div class="col">
                   <input type="number"
                          class="form-control form-control-sm"

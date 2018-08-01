@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-body">
+    <div class="card-title">Here you manage events.</div>
+    <div class="card-text">
+      <button type="button"
+              class="btn btn-primary btn-sm" (click)="onAddEvent()">Add event
+      </button>
+      <button type="submit"
+              class="btn btn-warning btn-sm"
+              (click)="onUpdateEvents()"
+              [disabled]="!eventsForm.valid">Update events
+      </button>
+      <div class="row">
+        <div class="col-4">
+          <form *ngIf="eventsForm!=undefined" [formGroup]="eventsForm">
+            <div formArrayName="events">
+              <div class="form-row mt-1"
+                   *ngFor="let event of getEventForms().controls; let i=index"
+                   [formGroupName]="i">
+                <div class="col">
+                  <input type="text"
+                         class="form-control form-control-sm"
+                         id="name"
+                         formControlName="name">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
