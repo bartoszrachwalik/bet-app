@@ -1,6 +1,15 @@
-<div class="card">
+<div *ngIf="!isAuthenticated(); else hello" class="card">
   <div class="card-body">
     <h5 class="card-title">Hello!</h5>
-    <p class="card-text">In order to take a part in betting tournament you need to either login or register first.</p>
+    <p class="card-text">In order to take a part in betting tournament you need to either
+      <a routerLink="/signin">login</a> or
+      <a routerLink="/signup">register</a> first.</p>
   </div>
 </div>
+<ng-template #hello>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Hello! You are now logged in.</h5>
+    </div>
+  </div>
+</ng-template>
