@@ -56,7 +56,7 @@ export class MatchesListComponent implements OnInit {
     this.getMatchForms().push(matchForm);
   }
 
-  nDeleteMatch(i: number) {
+  onDeleteMatch(i: number) {
     this.getMatchForms().removeAt(i);
   }
 

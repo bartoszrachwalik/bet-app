@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {BetModel} from '../my-bets/bet.model';
 import {MatchModel} from './match.model';
 import {EventModel} from './event.model';
+import {UserModel} from './user.model';
 
 @Injectable()
 export class DataStorageService {
@@ -33,5 +34,13 @@ export class DataStorageService {
 
   getEvents() {
     return this.http.get('https://bet-app-604c7.firebaseio.com/events.json');
+  }
+
+  updateUsers(users: UserModel[]) {
+    return this.http.put('https://bet-app-604c7.firebaseio.com/users.json', users);
+  }
+
+  getUsers() {
+    return this.http.get('https://bet-app-604c7.firebaseio.com/users.json');
   }
 }

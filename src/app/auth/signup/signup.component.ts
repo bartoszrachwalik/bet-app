@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
-import {UserModel} from '../../shared/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -23,10 +22,9 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup() {
-    const user = new UserModel(null, this.signupForm.get('name').value, null, null, null, null);
     const email = this.signupForm.get('email').value;
     const password = this.signupForm.get('password').value;
-    this.authService.signUp(email, password, user);
+    this.authService.signUp(email, password, this.signupForm.get('name').value);
   }
 
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EventModel} from '../shared/event.model';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DataStorageService} from '../shared/data-storage.service';
 
 @Component({
@@ -56,7 +56,7 @@ export class EventsComponent implements OnInit {
 
   onAddEvent() {
     const eventForm = new FormGroup({
-      name: new FormControl(null),
+      name: new FormControl(null, [Validators.required]),
       matchList: new FormControl(null),
       playersList: new FormControl(null)
     });
