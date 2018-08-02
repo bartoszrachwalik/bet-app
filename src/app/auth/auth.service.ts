@@ -7,8 +7,8 @@ import {DataStorageService} from '../shared/data-storage.service';
 
 @Injectable()
 export class AuthService {
-  token: string;
-  users = [];
+  private token: string;
+  private users = [];
 
   constructor(private router: Router,
               private dataStorageService: DataStorageService) {

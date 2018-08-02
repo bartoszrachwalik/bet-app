@@ -19,8 +19,9 @@ import {ResultsComponent} from './results/results.component';
 import {MatchesListComponent} from './matches-list/matches-list.component';
 import {EventSelectComponent} from './event-select/event-select.component';
 import {EventsComponent} from './events/events.component';
-import { MyBetsStartComponent } from './my-bets-start/my-bets-start.component';
-import { MatchesListStartComponent } from './matches-list-start/matches-list-start.component';
+import {MyBetsStartComponent} from './my-bets-start/my-bets-start.component';
+import {MatchesListStartComponent} from './matches-list-start/matches-list-start.component';
+import {AuthInfoComponent} from './auth-info/auth-info.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatchesListStartComponent } from './matches-list-start/matches-list-sta
     EventSelectComponent,
     EventsComponent,
     MyBetsStartComponent,
-    MatchesListStartComponent
+    MatchesListStartComponent,
+    AuthInfoComponent
   ],
   imports: [
     BrowserModule,

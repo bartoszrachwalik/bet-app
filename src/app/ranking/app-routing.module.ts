@@ -12,19 +12,20 @@ import {MatchesListComponent} from '../matches-list/matches-list.component';
 import {EventsComponent} from '../events/events.component';
 import {MyBetsStartComponent} from '../my-bets-start/my-bets-start.component';
 import {MatchesListStartComponent} from '../matches-list-start/matches-list-start.component';
+import {AuthGuard} from '../auth/auth-guard.service';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {
     path: 'my-bets', component: MyBetsStartComponent, children: [
-    {path: ':id', component: MyBetsComponent}
+    {path: ':id', component: MyBetsComponent, canActivate: [AuthGuard]}
   ]
   },
   {path: 'ranking', component: RankingComponent},
   {path: 'results', component: ResultsComponent},
   {
     path: 'matches-list', component: MatchesListStartComponent, children: [
-    {path: ':id', component: MatchesListComponent}
+    {path: ':id', component: MatchesListComponent, canActivate: [AuthGuard]}
   ]
   },
   {path: 'events', component: EventsComponent},
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 
 export class AppRoutingModule {
